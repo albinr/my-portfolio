@@ -1,5 +1,5 @@
 // app/projects/page.tsx
-import Link from "next/link";
+import ProjectCard from "@/components/ProjectCard";
 
 interface Repo {
   id: number;
@@ -10,7 +10,7 @@ interface Repo {
 
 export default async function ProjectsPage() {
   const res = await fetch("https://api.github.com/users/albinr/repos", {
-    next: { revalidate: 3600 }, // cache for 1 hour
+    next: { revalidate: 3600 },
   });
 
   const repos: Repo[] = await res.json();
@@ -25,16 +25,12 @@ export default async function ProjectsPage() {
 
         <div className="grid gap-6 text-left">
           {repos.map((repo) => (
-            <div key={repo.id} className="border p-4 rounded-xl shadow-sm bg-white dark:bg-gray-800">
-              <h2 className="text-xl font-semibold">
-                <Link href={repo.html_url} target="_blank" className="text-blue-600 hover:underline">
-                  {repo.name}
-                </Link>
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                {repo.description || "No description provided."}
-              </p>
-            </div>
+            <ProjectCard
+              key={repo.id}
+              title={repo.name}
+              description={repo.description || "No description provided."}
+              url={repo.html_url}
+            />
           ))}
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans text-gray-900`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} dark font-sans text-gray-900`}>
         <Header />
         <main className="max-w-4xl mx-auto p-4">{children}</main>
         <Footer />

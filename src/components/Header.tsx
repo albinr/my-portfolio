@@ -20,11 +20,11 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50">
+    <header className="bg-glass-light dark:bg-glass-dark backdrop-blur-soft shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
       <nav className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-bold text-blue-600 dark:text-blue-400"
+          className="text-xl font-bold text-primary dark:text-primary-light"
           onClick={closeMenu}
         >
           Albin
@@ -36,10 +36,10 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`hover:text-blue-600 dark:hover:text-blue-400 ${
+                className={`transition hover:text-primary dark:hover:text-primary-light ${
                   pathname === item.href
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-700 dark:text-gray-200"
+                    ? "text-primary dark:text-primary-light"
+                    : "text-foreground dark:text-gray-300"
                 }`}
               >
                 {item.label}
@@ -48,9 +48,9 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile toggle */}
         <button
-          className="sm:hidden text-gray-700 dark:text-white"
+          className="sm:hidden text-foreground dark:text-white"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -60,17 +60,17 @@ export default function Header() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="sm:hidden bg-white dark:bg-gray-900 border-t">
+        <div className="sm:hidden backdrop-blur-soft bg-glass-light dark:bg-glass-dark border-t border-gray-200 dark:border-gray-800">
           <ul className="flex flex-col items-center py-4 gap-4 text-sm font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={closeMenu}
-                  className={`block hover:text-blue-600 dark:hover:text-blue-400 ${
+                  className={`block transition hover:text-primary dark:hover:text-primary-light ${
                     pathname === item.href
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-gray-700 dark:text-gray-200"
+                      ? "text-primary dark:text-primary-light"
+                      : "text-foreground dark:text-gray-300"
                   }`}
                 >
                   {item.label}
