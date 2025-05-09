@@ -6,7 +6,7 @@ export default function Home() {
     <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 py-20 sm:py-32 font-sans">
       <div className="max-w-3xl">
         <Image
-          src="/images/profile.jpg" // Replace with your actual image or logo
+          src="/images/albin-ryberg.png"
           alt="Albin Ryberg"
           width={120}
           height={120}
