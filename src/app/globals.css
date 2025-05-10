@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
+/* Light mode custom properties */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --glass-light: rgba(255, 255, 255, 0.6);
+  --glass-dark: rgba(24, 24, 27, 0.5);
+  --glow: 0 0 20px rgba(59, 130, 246, 0.5); /* soft blue glow */
+
+  --font-sans: 'Geist Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
 }
 
-@theme inline {
+/* Inline Tailwind theme */
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-glass-light: var(--glass-light);
+  --color-glass-dark: var(--glass-dark);
+  --shadow-glow: var(--glow);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
+/* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +31,9 @@
   }
 }
 
+/* Body setup */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }

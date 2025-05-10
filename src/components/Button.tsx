@@ -11,18 +11,19 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseClasses =
+  const base =
     "inline-flex items-center justify-center px-6 py-2 rounded-full font-medium transition focus:outline-none";
+
   const variants: Record<string, string> = {
     primary:
       "bg-primary text-white hover:bg-primary-dark shadow-glow",
     outline:
-      "border border-primary text-primary hover:bg-primary hover:text-white",
+      "border border-primary text-primary hover:bg-primary hover:text-white dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-white",
     ghost:
-      "text-primary hover:bg-primary hover:text-white",
+      "text-primary hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white",
   };
 
-  const combined = `${baseClasses} ${variants[variant]} ${className}`;
+  const combined = `${base} ${variants[variant]} ${className}`;
 
   return (
     <button className={combined} {...props}>
