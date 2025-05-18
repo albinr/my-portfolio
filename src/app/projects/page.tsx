@@ -6,6 +6,12 @@ interface Repo {
   name: string;
   html_url: string;
   description: string;
+  created_at: string;
+  pushed_at: string;
+  language: string;
+  stargazers_count: number;
+  forks_count: number;
+  homepage: string;
 }
 
 export default async function ProjectsPage() {
@@ -23,13 +29,19 @@ export default async function ProjectsPage() {
           Here are some of my public GitHub repositories.
         </p>
 
-        <div className="grid gap-6 text-left">
+        <div className="grid gap-6 text-left md:grid-cols-2">
           {repos.map((repo) => (
             <ProjectCard
               key={repo.id}
               title={repo.name}
               description={repo.description || "No description provided."}
               url={repo.html_url}
+              pushed_at={repo.pushed_at}
+              created_at={repo.created_at}
+              language={repo.language}
+              stargazers_count={repo.stargazers_count}
+              forks_count={repo.forks_count}
+              homepage={repo.homepage}
             />
           ))}
         </div>

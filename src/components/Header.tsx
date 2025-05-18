@@ -20,7 +20,7 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="bg-glass-light dark:bg-glass-dark backdrop-blur-soft shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+    <header className="bg-glass-light backdrop-blur-sm dark:bg-glass-dark backdrop-blur-soft shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
       <nav className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           href="/"
