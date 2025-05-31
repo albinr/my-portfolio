@@ -13,7 +13,6 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate submit
-    console.log('Submitted:', form);
     setSubmitted(true);
   };
 
