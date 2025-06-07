@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 import CVModal from "@/components/CVModal";
 import Timeline from "@/components/Timeline";
+import AIChatBot from "@/components/AIChatBot";
 
 export default function AboutPage() {
   const [isCVOpen, setIsCVOpen] = useState(false);
@@ -44,7 +45,8 @@ export default function AboutPage() {
 
         <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} />
       </div>
-      <Timeline/>
+      <Timeline />
+      <AIChatBot />
     </section>
   );
 }
