@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SocialLinks from "@/components/SocialLinks";
+import { ThemeProvider } from "@/components/ThemeProvider"; // NEW
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans text-gray-900`}>
-        <Header />
-        <SocialLinks/>
-        <main className="max-w-4xl mx-auto p-4">{children}</main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans`}
+        style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
+      >
+        <ThemeProvider>
+          <Header />
+          <SocialLinks />
+          <main className="max-w-4xl mx-auto p-4">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

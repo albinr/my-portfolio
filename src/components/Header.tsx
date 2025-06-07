@@ -1,9 +1,11 @@
+// components/Header.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -21,37 +23,48 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="bg-glass-light backdrop-blur-sm dark:bg-glass-dark backdrop-blur-soft shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+    <header
+      className="sticky top-0 z-50 shadow-md border-b"
+      style={{
+        backgroundColor: "var(--glass)",
+        borderColor: "var(--foreground)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)"
+      }}
+    >
       <nav className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-bold text-primary dark:text-primary-light"
+          className="text-xl font-bold text-[var(--foreground)] hover:text-blue-500 transition"
           onClick={closeMenu}
         >
-          Albin
+          albinr.dev
         </Link>
 
-        {/* Desktop menu */}
-        <ul className="hidden sm:flex gap-6 text-sm font-medium">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`transition hover:text-primary dark:hover:text-primary-light ${
-                  pathname === item.href
-                    ? "text-primary dark:text-primary-light"
-                    : "text-foreground dark:text-gray-300"
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop nav */}
+        <div className="hidden sm:flex gap-6 items-center">
+          <ul className="flex gap-6 text-sm font-medium">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`transition ${
+                    pathname === item.href
+                      ? "text-blue-500"
+                      : "text-[var(--foreground)]/70 hover:text-[var(--foreground)]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <ThemeToggle />
+        </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile menu toggle */}
         <button
-          className="sm:hidden text-foreground dark:text-white"
+          className="sm:hidden text-[var(--foreground)]"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -61,17 +74,25 @@ export default function Header() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="sm:hidden backdrop-blur-soft bg-glass-light dark:bg-glass-dark border-t border-gray-200 dark:border-gray-800">
+        <div
+          className="sm:hidden border-t"
+          style={{
+            backgroundColor: "var(--glass-light)",
+            borderColor: "var(--foreground)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)"
+          }}
+        >
           <ul className="flex flex-col items-center py-4 gap-4 text-sm font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={closeMenu}
-                  className={`block transition hover:text-primary dark:hover:text-primary-light ${
+                  className={`transition ${
                     pathname === item.href
-                      ? "text-primary dark:text-primary-light"
-                      : "text-foreground dark:text-gray-300"
+                      ? "text-blue-500"
+                      : "text-[var(--foreground)]/70 hover:text-[var(--foreground)]"
                   }`}
                 >
                   {item.label}
@@ -79,6 +100,9 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          <div className="flex justify-center pb-4">
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </header>

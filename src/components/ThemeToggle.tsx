@@ -1,0 +1,20 @@
+// components/ThemeToggle.tsx
+"use client";
+
+import { useTheme } from "@/components/ThemeProvider";
+import { Moon, Sun } from "lucide-react";
+
+export default function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-full border border-[var(--foreground)] hover:scale-105 transition"
+      aria-label="Toggle theme"
+      title="Toggle light/dark mode"
+    >
+      {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+    </button>
+  );
+}
