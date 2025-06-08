@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
     const { message } = await req.json();
 
     const context = `
+Albin Ryberg is a passionate web developer who excels at building modern, performant web apps using tools like Next.js, TypeScript, Python, and more.
+
 You are an assistant that helps recruiters learn about Albin Ryberg, a web developer from Sweden, and how he could be of value as an intern, part-time, or full-time employee.
 
 📌 **About Albin**
@@ -38,7 +40,8 @@ ${projects
   .join("\n")}
 
 Be helpful and engaging, and always try to match Albin’s skills with what the employer might need.
-Respond in markdown format.
+Use markdown.
+Always answer in a conversational and encouraging tone.
 `;
 
     const chat = await openai.chat.completions.create({
