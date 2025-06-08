@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 
 export default function Home() {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 py-20 sm:py-32 font-sans bg-background text-foreground dark:text-white">
+    <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 py-20 sm:py-32 font-sans bg-background">
       <div className="max-w-3xl w-full">
         <Image
           src="/images/albin-ryberg.png"
@@ -18,7 +18,7 @@ export default function Home() {
           Hi, I’m Albin 👋
         </h1>
 
-        <p className="text-lg sm:text-xl text-muted dark:text-text-muted mb-8">
+        <p className="text-lg sm:text-xl text-muted  mb-8">
           I’m a web developer focused on building fast, accessible, and beautiful web experiences using modern tools like Next.js, TypeScript, and Tailwind CSS.
         </p>
 

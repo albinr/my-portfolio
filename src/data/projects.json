@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Studentpoolen",
+    "description": "Job application platform built with Next.js and TypeScript. Connects students with companies.",
+    "role": "Fullstack developer",
+    "tech": ["Next.js", "TypeScript", "MongoDB", "Spring Boot", "React"],
+    "link": "No link available"
+  },
+  {
+    "title": "Schedulist",
+    "description": "Calendar app built during internship at Kingstinct using React Native and GraphQL.",
+    "role": "Frontend intern",
+    "tech": ["React Native", "GraphQL"],
+    "link": "No link available"
+  },
+  {
+    "title": "C2App",
+    "description": "Command & Control application with Flask server and Python client for monitoring remote devices.",
+    "role": "Sole developer (individual project)",
+    "tech": ["Flask", "Python", "WebSockets", "Tkinter"],
+    "link": "https://github.com/albinr/c2app-client"
+  },
+  {
+    "title": "Vteam-05",
+    "description": "Simulated system for electric scooter rentals. Admin and customer portals, backend API, and simulation software.",
+    "role": "Group project developer",
+    "tech": ["Python", "Next.js", "Express.js", "MariaDB"],
+    "link": "https://github.com/albinr/vteam-05"
+  }
+]

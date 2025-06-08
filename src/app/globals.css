@@ -2,36 +2,122 @@
 
 /* Light mode custom properties */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: theme(colors.white);
+  --foreground: theme(colors.zinc.900);
   --glass: rgba(255, 255, 255, 0.6);
-  --glow: 0 0 20px rgba(59, 130, 246, 0.5);
+  --glow: 0 0 20px theme(colors.blue.500 / 0.5);
 
-  --font-sans: 'Geist Sans', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-sans: theme(fontFamily.sans);
+  --font-mono: theme(fontFamily.mono);
+
+  --text-primary: theme(colors.zinc.900);
+  --text-secondary: theme(colors.zinc.600);
+  --text-muted: theme(colors.zinc.500);
 }
 
-
-/* Inline Tailwind theme */
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-glass-light: var(--glass-light);
-  --color-glass-dark: var(--glass-dark);
-  --shadow-glow: var(--glow);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-}
-
+/* Dark theme override */
 [data-theme="dark"] {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: theme(colors.zinc.950);
+  --foreground: theme(colors.zinc.100);
   --glass: rgba(24, 24, 27, 0.5);
+
+  --text-primary: theme(colors.zinc.100);
+  --text-secondary: theme(colors.zinc.400);
+  --text-muted: theme(colors.zinc.500);
 }
 
-/* Body setup */
+/* Example usage */
 body {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--text-primary);
   font-family: var(--font-sans);
+}
+
+@keyframes bounce-once {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-once {
+  animation: bounce-once 0.6s ease-out 1;
+}
+
+.markdown {
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.5;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown h1 {
+  font-size: 1.5rem;
+} /* text-2xl */
+.markdown h2 {
+  font-size: 1.25rem;
+} /* text-xl */
+.markdown h3 {
+  font-size: 1.125rem;
+} /* text-lg */
+
+/* .markdown p {
+  margin-bottom: 0.75rem;
+} */
+
+.markdown ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  /* margin-bottom: 0.75rem; */
+}
+
+.markdown ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+  /* margin-bottom: 0.75rem; */
+}
+
+.markdown li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown a {
+  color: theme("colors.blue.600");
+  text-decoration: underline;
+}
+[data-theme="dark"] .markdown a {
+  color: theme("colors.blue.400");
+}
+
+.markdown pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+[data-theme="dark"] .markdown pre {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.markdown code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+[data-theme="dark"] .markdown code {
+  background-color: rgba(255, 255, 255, 0.08);
 }

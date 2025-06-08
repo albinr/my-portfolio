@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SocialLinks from "@/components/SocialLinks";
 import { ThemeProvider } from "@/components/ThemeProvider"; // NEW
+import AIChatBot from "@/components/AIChatBot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,12 +34,18 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans`}
-        style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
+        style={{
+          backgroundColor: "var(--background)",
+          color: "var(--foreground)",
+        }}
       >
         <ThemeProvider>
           <Header />
           <SocialLinks />
-          <main className="max-w-4xl mx-auto p-4">{children}</main>
+          <main className="max-w-4xl mx-auto p-4">
+            {children}
+            <AIChatBot />
+          </main>
           <Footer />
         </ThemeProvider>
       </body>
