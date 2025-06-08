@@ -33,19 +33,35 @@ body {
   font-family: var(--font-sans);
 }
 
-@keyframes bounce-once {
+@keyframes bounce-twice-wait {
   0%,
   100% {
     transform: translateY(0);
   }
-  50% {
+
+  5% {
+    transform: translateY(-10px);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  15% {
     transform: translateY(-8px);
   }
+
+  20% {
+    transform: translateY(0);
+  }
+
+  /* Wait from 20% to 100% (5 seconds total duration) */
 }
 
-.animate-bounce-once {
-  animation: bounce-once 0.6s ease-out 1;
+.animate-bounce-twice-wait {
+  animation: bounce-twice-wait 5s ease-in-out infinite;
 }
+
 
 .markdown {
   font-size: 0.875rem; /* text-sm */
