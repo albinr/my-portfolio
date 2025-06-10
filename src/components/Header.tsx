@@ -1,9 +1,8 @@
-// components/Header.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -17,18 +16,30 @@ const navItems = [
 export default function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    handleScroll(); // initialize on mount
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header
-      className="sticky top-0 z-50 shadow-md border-b"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
+        scrolled ? "border-b bg-glass shadow-md" : "border-b-0"
+      }`}
       style={{
-        backgroundColor: "var(--glass)",
         borderColor: "var(--foreground)",
         backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)"
+        WebkitBackdropFilter: "blur(8px)",
       }}
     >
       <nav className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -40,7 +51,6 @@ export default function Header() {
           albinr.dev
         </Link>
 
-        {/* Desktop nav */}
         <div className="hidden sm:flex gap-6 items-center">
           <ul className="flex gap-6 text-sm font-medium">
             {navItems.map((item) => (
@@ -61,7 +71,6 @@ export default function Header() {
           <ThemeToggle />
         </div>
 
-        {/* Mobile menu toggle */}
         <button
           className="sm:hidden text-[var(--foreground)]"
           onClick={toggleMenu}
@@ -71,7 +80,6 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {isOpen && (
         <div
           className="sm:hidden border-t"
@@ -79,7 +87,7 @@ export default function Header() {
             backgroundColor: "var(--glass-light)",
             borderColor: "var(--foreground)",
             backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)"
+            WebkitBackdropFilter: "blur(6px)",
           }}
         >
           <ul className="flex flex-col items-center py-4 gap-4 text-sm font-medium">

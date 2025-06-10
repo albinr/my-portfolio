@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SocialLinks from "@/components/SocialLinks";
-import { ThemeProvider } from "@/components/ThemeProvider"; // NEW
+import { ThemeProvider } from "@/components/ThemeProvider";
 import AIChatBot from "@/components/AIChatBot";
 
 const geistSans = Geist({
