@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 import Button from "@/components/Button";
 import ImageCarousel from "@/components/ImageCarousel";
 
@@ -9,7 +9,7 @@ export default function Home() {
         <div className="flex justify-center">
           <ImageCarousel
             images={[
-              { src: "/images/me-1.png", alt: "Albin Ryberg 1" },
+              { src: "/images/me-1.jpg", alt: "Albin Ryberg 1" },
               { src: "/images/me-2.jpg", alt: "Albin Ryberg 2" },
               { src: "/images/me-3.jpg", alt: "Albin Ryberg 3" },
             ]}
@@ -22,14 +22,11 @@ export default function Home() {
             Web developer building fast, accessible, and beautiful apps with
             Next.js, TypeScript, and Tailwind CSS.
           </p>
-
           <div className="flex gap-4">
-            <Link href="/projects">
-              <Button>View My Work</Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline">Contact Me</Button>
-            </Link>
+            <Button href="/projects">View My Work</Button>
+            <Button href="/contact" variant="outline">
+              Contact Me
+            </Button>
           </div>
         </div>
       </div>

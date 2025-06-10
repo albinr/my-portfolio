@@ -82,7 +82,7 @@ export default function AIChatBot() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-xl shadow-[var(--glow)] bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 transition-all ${
+        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 transition-all shadow-md hover:shadow-xl ${
           !isOpen ? "animate-bounce-twice-wait" : ""
         }`}
         title="Ask the AI about Albin"

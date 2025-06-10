@@ -34,9 +34,9 @@ export default function ProjectCard({
     }).format(new Date(date));
 
   return (
-    <div className="bg-glass-light dark:bg-glass-dark backdrop-blur-soft border border-gray-200 dark:border-gray-800 rounded-xl shadow-md hover:shadow-glow transition p-6">
+    <div className="bg-glass backdrop-blur-soft border rounded-xl shadow-md hover:shadow-glow transition p-6">
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-xl font-semibold text-foreground dark:text-gray-100">
+        <h2 className="text-xl font-semibold text-foreground">
           {title}
         </h2>
         <div className="flex gap-3">
@@ -61,7 +61,7 @@ export default function ProjectCard({
         </div>
       </div>
 
-      <p className="text-gray-700 dark:text-gray-300 mb-4">
+      <p className="mb-4">
         {description || "No description provided."}
       </p>
 
@@ -70,7 +70,7 @@ export default function ProjectCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-1 bg-muted-light dark:bg-muted-dark text-gray-700 dark:text-gray-300 rounded"
+              className="text-xs px-2 py-1 bg-muted-light rounded"
             >
               {tag}
             </span>
@@ -78,9 +78,9 @@ export default function ProjectCard({
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-2">
+      <div className="flex flex-wrap items-center gap-4 text-sm mt-2">
         {language && (
-          <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+          <span className="text-xs px-2 py-1 rounded">
             {language}
           </span>
         )}

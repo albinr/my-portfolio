@@ -1,14 +1,19 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "outline" | "ghost";
   className?: string;
+  href?: string;
 }
 
 export default function Button({
   variant = "primary",
   className = "",
   children,
+  href,
   ...props
 }: ButtonProps) {
   const base =
@@ -16,25 +21,36 @@ export default function Button({
 
   const variants: Record<string, string> = {
     primary: `
-      bg-[var(--color-primary)] 
-      text-[var(--color-text)] 
-      hover:bg-[var(--color-primary-dark)] 
-      shadow-[var(--shadow-glow)]
+      bg-[var(--foreground)]
+      text-[var(--background)]
+      hover:bg-[var(--foreground)]
+      hover:opacity-90
+      shadow-[var(--glow)]
     `,
     outline: `
-      border border-[var(--color-border)] 
-      text-[var(--color-primary)] 
-      hover:bg-[var(--color-primary)] 
-      hover:text-[var(--color-text)]
+      border border-[var(--foreground)]
+      text-[var(--foreground)]
+      bg-transparent
+      hover:bg-[var(--foreground)]
+      hover:text-[var(--background)]
     `,
     ghost: `
-      text-[var(--color-primary)] 
-      hover:bg-[var(--color-primary)] 
-      hover:text-[var(--color-text)]
+      text-[var(--foreground)]
+      bg-transparent
+      hover:bg-[var(--foreground)]
+      hover:text-[var(--background)]
     `,
   };
 
-  const combined = `${base} ${variants[variant]} ${className}`;
+  const combined = `${base} ${variants[variant]} ${className}`.trim();
+
+  if (href) {
+    return (
+      <Link href={href} className={combined}>
+        {children}
+      </Link>
+    );
+  }
 
   return (
     <button className={combined} {...props}>

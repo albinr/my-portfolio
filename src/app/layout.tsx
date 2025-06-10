@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SocialLinks from "@/components/SocialLinks";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider"; // NEW
 import AIChatBot from "@/components/AIChatBot";
 
 const geistSans = Geist({
@@ -42,10 +42,8 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <SocialLinks />
-          <main className="max-w-4xl mx-auto p-4">
-            {children}
-            <AIChatBot />
-          </main>
+          <main className="max-w-4xl mx-auto p-4">{children}</main>
+          <AIChatBot />
           <Footer />
         </ThemeProvider>
       </body>
