@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { TransitionLink } from "@/components/utils/TransitionLink";
+import MobileNav from "@/components/MobileNav";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -26,10 +28,17 @@ export default function Header() {
       setScrolled(window.scrollY > 0);
     };
 
-    handleScroll(); // initialize on mount
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   return (
     <header
@@ -55,7 +64,7 @@ export default function Header() {
           <ul className="flex gap-6 text-sm font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link
+                <TransitionLink
                   href={item.href}
                   className={`transition ${
                     pathname === item.href
@@ -64,7 +73,7 @@ export default function Header() {
                   }`}
                 >
                   {item.label}
-                </Link>
+                </TransitionLink>
               </li>
             ))}
           </ul>
@@ -75,43 +84,14 @@ export default function Header() {
           className="sm:hidden text-[var(--foreground)]"
           onClick={toggleMenu}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-nav"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {isOpen && (
-        <div
-          className="sm:hidden border-t"
-          style={{
-            backgroundColor: "var(--glass-light)",
-            borderColor: "var(--foreground)",
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
-          }}
-        >
-          <ul className="flex flex-col items-center py-4 gap-4 text-sm font-medium">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={closeMenu}
-                  className={`transition ${
-                    pathname === item.href
-                      ? "text-blue-500"
-                      : "text-[var(--foreground)]/70 hover:text-[var(--foreground)]"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex justify-center pb-4">
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
+      <MobileNav isOpen={isOpen} closeMenu={closeMenu} navItems={navItems} />
     </header>
   );
 }

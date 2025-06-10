@@ -1,18 +1,13 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
-import CVModal from "@/components/CVModal";
 import Timeline from "@/components/Timeline";
-import AIChatBot from "@/components/AIChatBot";
 
 export default function AboutPage() {
-  const [isCVOpen, setIsCVOpen] = useState(false);
-
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 sm:py-32 text-center font-sans">
       <div className="max-w-3xl">
         <Image
-          src="/images/me-1.png"
+          src="/images/me-1.jpg"
           alt="Albin Ryberg"
           width={160}
           height={160}
@@ -31,22 +26,12 @@ export default function AboutPage() {
           Flask. I enjoy turning complex problems into elegant solutions.
         </p>
         <p className="text-lg sm:text-xl mb-6">
-          Outside of coding, I’m into fitness, aviation, and exploring how
+          Outside of coding, I’m into fitness, the outdoors, and exploring how
           technology can solve real-world problems. I believe in continuous
           learning and love working on meaningful projects.
         </p>
-
-        <button
-          onClick={() => setIsCVOpen(true)}
-          className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 shadow-md"
-        >
-          View My CV
-        </button>
-
-        <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} />
       </div>
       <Timeline />
-      <AIChatBot />
     </section>
   );
 }
