@@ -75,7 +75,7 @@ export default function AIChatBot() {
         },
       ]);
     }
-  }, [isOpen]);
+  }, [messages.length, isOpen]);
 
   return (
     <>

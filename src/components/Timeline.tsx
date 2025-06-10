@@ -69,12 +69,12 @@ export default function Timeline() {
         {filtered.map((item, index) => (
           <div key={index} className="relative ml-4">
             <span className="absolute -left-4 top-2 w-3 h-3 bg-black rounded-full" />
-            <div className="bg-white p-4 rounded-md shadow-md">
-              <p className="text-sm text-gray-500">
+            <div className="bg-glass p-4 rounded-md shadow-md">
+              <p className="text-sm">
                 {formatDate(item.date)}
               </p>
               <h3 className="text-xl font-semibold mt-1">{item.title}</h3>
-              <p className="mt-2 text-sm text-gray-700">{item.description}</p>
+              <p className="mt-2 text-sm ">{item.description}</p>
             </div>
           </div>
         ))}
