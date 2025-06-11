@@ -1,5 +1,4 @@
 import { Github, Linkedin, Mail } from "lucide-react";
-import ThemeToggle from "./ThemeToggle"; // if you have one
 
 export default function Footer() {
   return (
