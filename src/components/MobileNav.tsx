@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { TransitionLink } from "@/components/utils/TransitionLink";
 import ThemeToggle from "@/components/ThemeToggle";
+import { X } from "lucide-react";
 
 interface NavItem {
   label: string;
@@ -51,22 +52,30 @@ export default function MobileNav({
         onClick={closeMenu}
       />
 
-      {/* Slide-down panel */}
+      {/* Slide-in panel */}
       <div
         ref={panelRef}
-        className={`fixed top-16 left-0 right-0 z-50 sm:hidden border-t transition-all duration-300 transform ${
-          isOpen
-            ? "opacity-100 translate-y-0 visible"
-            : "opacity-0 -translate-y-4 invisible"
+        className={`fixed inset-0 z-50 sm:hidden transition-transform duration-300 transform ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          backgroundColor: "var(--glass-light)",
-          borderColor: "var(--foreground)",
-          backdropFilter: "blur(6px)",
-          WebkitBackdropFilter: "blur(6px)",
+          backgroundColor: "var(--glass)",
+          borderLeft: "1px solid var(--foreground)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
-        <ul className="flex flex-col items-center py-4 gap-4 text-sm font-medium">
+        {/* Close button */}
+        <button
+          onClick={closeMenu}
+          className="absolute top-4 right-4 p-2 rounded-full text-[var(--foreground)] hover:bg-[var(--foreground)]/10 transition"
+          aria-label="Close menu"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Nav items */}
+        <ul className="flex flex-col items-center justify-center h-full gap-6 text-lg font-medium">
           {navItems.map((item) => (
             <li key={item.href}>
               <TransitionLink
@@ -83,7 +92,9 @@ export default function MobileNav({
             </li>
           ))}
         </ul>
-        <div className="flex justify-center pb-4">
+
+        {/* Theme toggle */}
+        <div className="absolute bottom-8 w-full flex justify-center">
           <ThemeToggle />
         </div>
       </div>

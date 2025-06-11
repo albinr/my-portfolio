@@ -17,13 +17,14 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center px-6 py-2 rounded-full font-medium transition focus:outline-none";
+    "inline-flex items-center justify-center rounded-full font-medium transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--foreground)] active:scale-95";
+
+  const padding = "px-6 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base";
 
   const variants: Record<string, string> = {
     primary: `
       bg-[var(--foreground)]
       text-[var(--background)]
-      hover:bg-[var(--foreground)]
       hover:opacity-90
       shadow-[var(--glow)]
     `,
@@ -42,7 +43,8 @@ export default function Button({
     `,
   };
 
-  const combined = `${base} ${variants[variant]} ${className}`.trim();
+  const combined =
+    `${base} ${padding} ${variants[variant]} ${className}`.trim();
 
   if (href) {
     return (

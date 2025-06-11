@@ -35,7 +35,7 @@ body {
 
 main {
   transition-property: opacity, background, transform, filter;
-  transition-timing-funciton: ease-in-out;
+  transition-timing-function: ease-in-out;
   transition-duration: 400ms;
 }
 

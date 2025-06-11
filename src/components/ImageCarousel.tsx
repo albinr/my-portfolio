@@ -44,7 +44,7 @@ export default function ImageCarousel({
 
   return (
     <div
-      className="relative shadow-glow overflow-hidden rounded-2xl"
+      className="relative shadow-2xl overflow-hidden rounded-2xl"
       style={{ width, height }}
     >
       <Image
