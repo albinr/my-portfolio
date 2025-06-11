@@ -14,26 +14,9 @@ export default function ImageCarousel({
   images,
   width = 300,
   height = 400,
-  autoSwitchInterval = 5000,
+  autoSwitchInterval = 6000,
 }: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  //   const next = () => {
-  //     setFade(false);
-  //     setTimeout(() => {
-  //       setIndex((prev) => (prev + 1) % images.length);
-  //       setFade(true);
-  //     }, 150); // short fade-out before switching
-  //   };
-
-  //   const prev = () => {
-  //     setFade(false);
-  //     setTimeout(() => {
-  //       setIndex((prev) => (prev - 1 + images.length) % images.length);
-  //       setFade(true);
-  //     }, 150);
-  //   };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,29 +30,29 @@ export default function ImageCarousel({
       className="relative shadow-2xl overflow-hidden rounded-2xl"
       style={{ width, height }}
     >
-      <Image
-        src={images[index].src}
-        alt={images[index].alt}
-        width={width}
-        height={height}
-        className={`object-cover w-full h-full transition-opacity duration-500 ${
-          fade ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-4">
+      {images.map((img, i) => (
+        <Image
+          key={i}
+          src={img.src}
+          alt={img.alt}
+          width={width}
+          height={height}
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ${
+            i === index ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+          priority={i === 0}
+        />
+      ))}
+
+      {/* Dots */}
+      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-4 z-20">
         {images.map((_, i) => (
           <button
             key={i}
-            className={`w-2.5 h-2.5 rounded-full ${
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
               i === index ? "bg-blue-500" : "bg-gray-400/40"
             }`}
-            onClick={() => {
-              setFade(false);
-              setTimeout(() => {
-                setIndex(i);
-                setFade(true);
-              }, 150);
-            }}
+            onClick={() => setIndex(i)}
             aria-label={`Switch to image ${i + 1}`}
           />
         ))}

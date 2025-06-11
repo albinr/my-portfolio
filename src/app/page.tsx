@@ -12,6 +12,7 @@ export default function Home() {
               { src: "/images/me-1.jpg", alt: "Albin Ryberg 1" },
               { src: "/images/me-2.jpg", alt: "Albin Ryberg 2" },
               { src: "/images/me-3.jpg", alt: "Albin Ryberg 3" },
+              { src: "/images/me-4.jpg", alt: "Albin Ryberg 4" },
             ]}
           />
         </div>
